@@ -17,6 +17,7 @@
 		D28D6FC52595F2AE00096E06 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D6FC42595F2AE00096E06 /* WeatherData.swift */; };
 		D28D6FC82595F3CC00096E06 /* WeatherDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D6FC72595F3CC00096E06 /* WeatherDataManager.swift */; };
 		D28D6FCC2595F48700096E06 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D6FCB2595F48700096E06 /* Constants.swift */; };
+		D28D6FD2259602FE00096E06 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = D28D6FD1259602FE00096E06 /* SkeletonView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D28D6FD2259602FE00096E06 /* SkeletonView in Frameworks */,
 				D28D6FBD2595E89D00096E06 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,6 +130,7 @@
 			name = Weather;
 			packageProductDependencies = (
 				D28D6FBC2595E89D00096E06 /* Alamofire */,
+				D28D6FD1259602FE00096E06 /* SkeletonView */,
 			);
 			productName = Weather;
 			productReference = D28D6FA22595D1E000096E06 /* Weather.app */;
@@ -158,6 +161,7 @@
 			mainGroup = D28D6F992595D1E000096E06;
 			packageReferences = (
 				D28D6FBB2595E89D00096E06 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				D28D6FD0259602FE00096E06 /* XCRemoteSwiftPackageReference "SkeletonView" */,
 			);
 			productRefGroup = D28D6FA32595D1E000096E06 /* Products */;
 			projectDirPath = "";
@@ -403,6 +407,14 @@
 				minimumVersion = 5.4.1;
 			};
 		};
+		D28D6FD0259602FE00096E06 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Juanpe/SkeletonView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.11.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -410,6 +422,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D28D6FBB2595E89D00096E06 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		D28D6FD1259602FE00096E06 /* SkeletonView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D28D6FD0259602FE00096E06 /* XCRemoteSwiftPackageReference "SkeletonView" */;
+			productName = SkeletonView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

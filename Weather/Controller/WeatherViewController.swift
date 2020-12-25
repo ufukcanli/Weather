@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class WeatherViewController: UIViewController {
 
@@ -18,7 +19,8 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        weatherDataManager.fetchWeather(city: "Istanbul")
+        showAnimation()
+//        weatherDataManager.fetchWeather(byCity: "Istanbul")
     }
 
     @IBAction func addLocationButtonTapped(_ sender: UIBarButtonItem) {
@@ -27,6 +29,12 @@ class WeatherViewController: UIViewController {
     
     @IBAction func locationButtonTapped(_ sender: UIBarButtonItem) {
         
+    }
+    
+    private func showAnimation() {
+        conditionImageView.showAnimatedGradientSkeleton()
+        temperatureLabel.showAnimatedGradientSkeleton()
+        conditionLabel.showAnimatedGradientSkeleton()
     }
 }
 

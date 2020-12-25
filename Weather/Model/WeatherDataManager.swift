@@ -10,7 +10,7 @@ import Alamofire
 
 struct WeatherDataManager {
         
-    func fetchWeather(city: String) {
+    func fetchWeather(byCity city: String) {
         let endpoint = "https://api.openweathermap.org/data/2.5/weather?q=%@&appid=%@&units=metric"
         let searchterm = city.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? city
         let urlString = String(format: endpoint, searchterm, Constants.API_KEY)

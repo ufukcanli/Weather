@@ -13,9 +13,12 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var conditionLabel: UILabel!
     
+    private let weatherDataManager = WeatherDataManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        weatherDataManager.fetchWeather(city: "Istanbul")
     }
 
     @IBAction func addLocationButtonTapped(_ sender: UIBarButtonItem) {

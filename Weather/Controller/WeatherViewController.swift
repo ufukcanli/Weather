@@ -20,7 +20,16 @@ class WeatherViewController: UIViewController {
         super.viewDidLoad()
         
         showAnimation()
-//        weatherDataManager.fetchWeather(byCity: "Istanbul")
+        
+        weatherDataManager.fetchWeather(byCity: "Istanbul") { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let weatherData):
+                self.updateView(with: weatherData)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 
     @IBAction func addLocationButtonTapped(_ sender: UIBarButtonItem) {
@@ -30,11 +39,24 @@ class WeatherViewController: UIViewController {
     @IBAction func locationButtonTapped(_ sender: UIBarButtonItem) {
         
     }
+        
+    private func updateView(with data: WeatherData) {
+        hideAnimation()
+        
+        temperatureLabel.text = String(data.main.temp)
+        conditionLabel.text = data.weather.first?.description
+    }
     
     private func showAnimation() {
         conditionImageView.showAnimatedGradientSkeleton()
         temperatureLabel.showAnimatedGradientSkeleton()
         conditionLabel.showAnimatedGradientSkeleton()
+    }
+    
+    private func hideAnimation() {
+        conditionImageView.hideSkeleton()
+        temperatureLabel.hideSkeleton()
+        conditionLabel.hideSkeleton()
     }
 }
 

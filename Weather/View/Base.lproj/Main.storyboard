@@ -76,27 +76,98 @@
                         <outlet property="conditionImageView" destination="TWq-KN-jTE" id="c1o-6h-s9e"/>
                         <outlet property="conditionLabel" destination="zxj-Mf-hI3" id="vhI-7N-LCm"/>
                         <outlet property="temperatureLabel" destination="N6D-9H-SaQ" id="atv-VZ-1yf"/>
-                        <segue destination="YUE-CE-Afk" kind="presentation" identifier="showAddCity" id="RKA-al-Zyf"/>
+                        <segue destination="YUE-CE-Afk" kind="presentation" identifier="showAddCity" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="RKA-al-Zyf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="77.678571428571431"/>
         </scene>
-        <!--View Controller-->
+        <!--Add City View Controller-->
         <scene sceneID="9M4-hd-6fY">
             <objects>
-                <viewController id="YUE-CE-Afk" sceneMemberID="viewController">
+                <viewController id="YUE-CE-Afk" customClass="AddCityViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x32-1F-U2o">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4o2-Lq-rcs" userLabel="Container View">
+                                <rect key="frame" x="67" y="205" width="280" height="246"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Jlj-TM-Nd2">
+                                        <rect key="frame" x="24" y="24" width="232" height="198"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type city" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JNy-2D-VpU">
+                                                <rect key="frame" x="0.0" y="0.0" width="232" height="25"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qk8-00-cN8">
+                                                <rect key="frame" x="0.0" y="37" width="232" height="40"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="WMn-q6-Sf5"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GDb-uc-hwu">
+                                                <rect key="frame" x="0.0" y="89" width="232" height="40"/>
+                                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="0xn-Nw-P0f"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                                <state key="normal" title="Search">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Mlu-lC-GHL">
+                                                <rect key="frame" x="0.0" y="141" width="232" height="20"/>
+                                            </activityIndicatorView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAs-cT-4kR">
+                                                <rect key="frame" x="0.0" y="173" width="232" height="25"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="Jlj-TM-Nd2" firstAttribute="top" secondItem="4o2-Lq-rcs" secondAttribute="top" constant="24" id="5qb-nm-2KU"/>
+                                    <constraint firstItem="Jlj-TM-Nd2" firstAttribute="leading" secondItem="4o2-Lq-rcs" secondAttribute="leading" constant="24" id="EFt-G6-wxc"/>
+                                    <constraint firstAttribute="bottom" secondItem="Jlj-TM-Nd2" secondAttribute="bottom" constant="24" id="ZCL-8a-yvZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Jlj-TM-Nd2" secondAttribute="trailing" constant="24" id="iVc-5A-dEJ"/>
+                                    <constraint firstAttribute="width" constant="280" id="vUl-Ir-10t"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="lWv-5o-yoe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4o2-Lq-rcs" firstAttribute="centerX" secondItem="x32-1F-U2o" secondAttribute="centerX" id="AGj-o3-xRD"/>
+                            <constraint firstItem="4o2-Lq-rcs" firstAttribute="centerY" secondItem="x32-1F-U2o" secondAttribute="centerY" constant="-120" id="htL-7M-jNw"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mds-du-hdp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1928" y="78"/>
+            <point key="canvasLocation" x="1927.5362318840582" y="77.678571428571431"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="M47-TH-RuJ">
@@ -125,6 +196,12 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tertiarySystemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

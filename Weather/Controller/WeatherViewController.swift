@@ -32,8 +32,8 @@ class WeatherViewController: UIViewController {
         }
     }
 
-    @IBAction func addLocationButtonTapped(_ sender: UIBarButtonItem) {
-        
+    @IBAction func addCityButtonTapped(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "showAddCity", sender: nil)
     }
     
     @IBAction func locationButtonTapped(_ sender: UIBarButtonItem) {
@@ -43,8 +43,9 @@ class WeatherViewController: UIViewController {
     private func updateView(with data: WeatherData) {
         hideAnimation()
         
-        temperatureLabel.text = String(data.main.temp)
+        temperatureLabel.text = String(format: "%.f", data.main.temp) + "°C"
         conditionLabel.text = data.weather.first?.description
+        navigationItem.title = data.name
     }
     
     private func showAnimation() {

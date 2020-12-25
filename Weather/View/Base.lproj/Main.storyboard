@@ -68,7 +68,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="hk2-99-sK7">
                             <connections>
-                                <action selector="addLocationButtonTapped:" destination="BYZ-38-t0r" id="EQu-JP-AgS"/>
+                                <action selector="addCityButtonTapped:" destination="BYZ-38-t0r" id="EQu-JP-AgS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -76,7 +76,7 @@
                         <outlet property="conditionImageView" destination="TWq-KN-jTE" id="c1o-6h-s9e"/>
                         <outlet property="conditionLabel" destination="zxj-Mf-hI3" id="vhI-7N-LCm"/>
                         <outlet property="temperatureLabel" destination="N6D-9H-SaQ" id="atv-VZ-1yf"/>
-                        <segue destination="YUE-CE-Afk" kind="presentation" id="RKA-al-Zyf"/>
+                        <segue destination="YUE-CE-Afk" kind="presentation" identifier="showAddCity" id="RKA-al-Zyf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

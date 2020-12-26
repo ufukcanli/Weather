@@ -80,6 +80,8 @@ class AddCityViewController: UIViewController {
         view.backgroundColor = UIColor.init(white: 0.3, alpha: 0.4)
         
         cityTextField.delegate = self
+        cityTextField.returnKeyType = .go
+        
         statusLabel.isHidden = true
     }
 

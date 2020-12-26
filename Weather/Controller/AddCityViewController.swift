@@ -14,6 +14,8 @@ class AddCityViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var statusLabel: UILabel!
     
+    weak var delegate: WeatherViewControllerDelegate?
+    
     private let weatherManager = WeatherManager()
     
     override func viewDidLoad() {
@@ -56,6 +58,12 @@ class AddCityViewController: UIViewController {
         statusLabel.isHidden = false
         statusLabel.textColor = .systemGreen
         statusLabel.text = "Success!"
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+            guard let self = self else { return }
+            self.delegate?.didUpdateWeatherFromSearch(withModel: weatherModel)
+        }
+        view.endEditing(true)
+        cityTextField.resignFirstResponder()
     }
     
     private func handleSearchError(text: String) {
@@ -71,6 +79,7 @@ class AddCityViewController: UIViewController {
 
         view.backgroundColor = UIColor.init(white: 0.3, alpha: 0.4)
         
+        cityTextField.delegate = self
         statusLabel.isHidden = true
     }
 
@@ -80,5 +89,16 @@ extension AddCityViewController: UIGestureRecognizerDelegate {
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         return touch.view == self.view
+    }
+}
+
+extension AddCityViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        statusLabel.isHidden = true
+        guard let query = cityTextField.text, !query.isEmpty else { return false }
+        handleSearch(query: query)
+        handleSearchError(text: "City cannot be empty. Please try again!")
+        return true
     }
 }

@@ -24,8 +24,8 @@ class WeatherViewController: UIViewController {
         weatherDataManager.fetchWeather(byCity: "Istanbul") { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case .success(let weatherData):
-                self.updateView(with: weatherData)
+            case .success(let weatherModel):
+                self.updateView(withModel: weatherModel)
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -40,12 +40,13 @@ class WeatherViewController: UIViewController {
         
     }
         
-    private func updateView(with data: WeatherData) {
+    private func updateView(withModel model: WeatherModel) {
         hideAnimation()
         
-        temperatureLabel.text = String(format: "%.f", data.main.temp) + "°C"
-        conditionLabel.text = data.weather.first?.description
-        navigationItem.title = data.name
+        temperatureLabel.text = "\(model.temp)°C"
+        conditionLabel.text = model.conditionDescription
+        conditionImageView.image = UIImage(named: model.conditionImage)
+        navigationItem.title = model.countryName
     }
     
     private func showAnimation() {

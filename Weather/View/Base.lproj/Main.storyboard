@@ -128,6 +128,9 @@
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="searchButtonTapped:" destination="YUE-CE-Afk" eventType="touchUpInside" id="7PZ-vI-jj3"/>
+                                                </connections>
                                             </button>
                                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Mlu-lC-GHL">
                                                 <rect key="frame" x="0.0" y="141" width="232" height="20"/>
@@ -164,6 +167,12 @@
                             <constraint firstItem="4o2-Lq-rcs" firstAttribute="centerY" secondItem="x32-1F-U2o" secondAttribute="centerY" constant="-120" id="htL-7M-jNw"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="Mlu-lC-GHL" id="ejl-Ep-985"/>
+                        <outlet property="cityTextField" destination="qk8-00-cN8" id="j77-6d-q0O"/>
+                        <outlet property="searchButton" destination="GDb-uc-hwu" id="ogA-uS-kV7"/>
+                        <outlet property="statusLabel" destination="bAs-cT-4kR" id="0HZ-kJ-9ca"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mds-du-hdp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -22,6 +22,10 @@ enum WeatherError: Error, LocalizedError {
     }
 }
 
+enum Constants {
+    static let API_KEY = "abbc024189e935851f279b4931d3d785"
+}
+
 struct WeatherManager {
         
     func fetchWeather(byCity city: String, completion: @escaping (Result<WeatherModel, Error>) -> Void) {

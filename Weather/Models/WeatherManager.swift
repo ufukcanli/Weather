@@ -8,6 +8,20 @@
 import Foundation
 import Alamofire
 
+enum WeatherError: Error, LocalizedError {
+    case unknown
+    case invalidCity
+    
+    var errorDescription: String? {
+        switch self {
+        case .invalidCity:
+            return "This is an invalid city. Please try again!"
+        case .unknown:
+            return "Hey, this is an unknown error!"
+        }
+    }
+}
+
 struct WeatherManager {
         
     func fetchWeather(byCity city: String, completion: @escaping (Result<WeatherModel, Error>) -> Void) {
@@ -21,7 +35,12 @@ struct WeatherManager {
                 let weatherModel = weatherData.model
                 completion(.success(weatherModel))
             case .failure(let error):
-                completion(.failure(error))
+                if response.response?.statusCode == 404 {
+                    let invalidCityError = WeatherError.invalidCity
+                    completion(.failure(invalidCityError))
+                } else {
+                    completion(.failure(error))
+                }
             }
         }
     }

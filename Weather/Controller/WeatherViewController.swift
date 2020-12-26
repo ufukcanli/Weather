@@ -14,14 +14,14 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var conditionLabel: UILabel!
     
-    private let weatherDataManager = WeatherDataManager()
+    private let weatherManager = WeatherManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         showAnimation()
         
-        weatherDataManager.fetchWeather(byCity: "Istanbul") { [weak self] result in
+        weatherManager.fetchWeather(byCity: "Istanbul") { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let weatherModel):

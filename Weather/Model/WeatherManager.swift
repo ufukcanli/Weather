@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-struct WeatherDataManager {
+struct WeatherManager {
         
     func fetchWeather(byCity city: String, completion: @escaping (Result<WeatherModel, Error>) -> Void) {
         let endpoint = "https://api.openweathermap.org/data/2.5/weather?q=%@&appid=%@&units=metric"

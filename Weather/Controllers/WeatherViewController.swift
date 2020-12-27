@@ -7,6 +7,7 @@
 
 import UIKit
 import SkeletonView
+import CoreLocation
 
 protocol WeatherViewControllerDelegate: AnyObject {
     func didUpdateWeatherFromSearch(withModel model: WeatherModel)
@@ -19,6 +20,12 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var conditionLabel: UILabel!
     
     private let weatherManager = WeatherManager()
+    
+    private lazy var locationManager: CLLocationManager = {
+        let manager = CLLocationManager()
+        manager.delegate = self
+        return manager
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +56,22 @@ class WeatherViewController: UIViewController {
     }
     
     @IBAction func locationButtonTapped(_ sender: UIBarButtonItem) {
+        locationManagerDidChangeAuthorization(locationManager)
+    }
+    
+    private func showAlertForLocationPermission() {
+        let alertController = UIAlertController(title: "Requires Location Permission", message: "Would you like to enable location permission in Settings?", preferredStyle: .alert)
         
+        let enableAction = UIAlertAction(title: "Go To Settings", style: .default) { _ in
+            guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
+            UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+        }
+        alertController.addAction(enableAction)
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
     }
         
     private func updateView(withModel model: WeatherModel) {
@@ -81,5 +103,27 @@ extension WeatherViewController: WeatherViewControllerDelegate {
             guard let self = self else { return }
             self.updateView(withModel: model)
         })
+    }
+}
+
+extension WeatherViewController: CLLocationManagerDelegate {
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        switch manager.authorizationStatus {
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationManager.requestLocation()
+        case .denied, .notDetermined, .restricted:
+            locationManager.requestWhenInUseAuthorization()
+        @unknown default:
+            showAlertForLocationPermission()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        
     }
 }

@@ -39,7 +39,7 @@ struct WeatherManager {
                 let weatherModel = weatherData.model
                 completion(.success(weatherModel))
             case .failure(let error):
-                if response.response?.statusCode == 404 {
+                if error.responseCode == 404 {
                     let invalidCityError = WeatherError.invalidCity
                     completion(.failure(invalidCityError))
                 } else {

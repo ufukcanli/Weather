@@ -66,9 +66,9 @@
                                 <action selector="locationButtonTapped:" destination="BYZ-38-t0r" id="CsX-vC-P0R"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="hk2-99-sK7">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="hk2-99-sK7">
                             <connections>
-                                <action selector="addCityButtonTapped:" destination="BYZ-38-t0r" id="EQu-JP-AgS"/>
+                                <action selector="searchCityButtonTapped:" destination="BYZ-38-t0r" id="EQu-JP-AgS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -76,17 +76,17 @@
                         <outlet property="conditionImageView" destination="TWq-KN-jTE" id="c1o-6h-s9e"/>
                         <outlet property="conditionLabel" destination="zxj-Mf-hI3" id="vhI-7N-LCm"/>
                         <outlet property="temperatureLabel" destination="N6D-9H-SaQ" id="atv-VZ-1yf"/>
-                        <segue destination="YUE-CE-Afk" kind="presentation" identifier="showAddCity" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="RKA-al-Zyf"/>
+                        <segue destination="YUE-CE-Afk" kind="presentation" identifier="showSearchCity" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="RKA-al-Zyf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="77.678571428571431"/>
         </scene>
-        <!--Add City View Controller-->
+        <!--Search City View Controller-->
         <scene sceneID="9M4-hd-6fY">
             <objects>
-                <viewController id="YUE-CE-Afk" customClass="AddCityViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="YUE-CE-Afk" customClass="SearchCityViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x32-1F-U2o">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

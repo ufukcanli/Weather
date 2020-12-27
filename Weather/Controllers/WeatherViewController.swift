@@ -32,7 +32,7 @@ class WeatherViewController: UIViewController {
         
         showAnimation()
         
-        weatherManager.fetchWeather(byCity: "Istanbul") { [weak self] result in
+        weatherManager.fetchWeather(byCity: weatherManager.getCachedCity() ?? "Istanbul") { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let weatherModel):
@@ -45,14 +45,14 @@ class WeatherViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showAddCity" {
-            if let destination = segue.destination as? AddCityViewController {
+            if let destination = segue.destination as? SearchCityViewController {
                 destination.delegate = self
             }
         }
     }
 
-    @IBAction func addCityButtonTapped(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "showAddCity", sender: nil)
+    @IBAction func searchCityButtonTapped(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "showSearchCity", sender: nil)
     }
     
     @IBAction func locationButtonTapped(_ sender: UIBarButtonItem) {

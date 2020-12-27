@@ -30,6 +30,20 @@ enum Constants {
 }
 
 struct WeatherManager {
+    
+    private let defaults = UserDefaults.standard
+    
+    enum Key: String {
+        case city
+    }
+    
+    func cacheCity(cityName: String) {
+        defaults.set(cityName, forKey: Key.city.rawValue)
+    }
+    
+    func getCachedCity() -> String? {
+        return defaults.value(forKey: Key.city.rawValue) as? String
+    }
         
     func fetchWeather(byCity city: String, completion: @escaping (Result<WeatherModel, Error>) -> Void) {
         let endpoint = "https://api.openweathermap.org/data/2.5/weather?q=%@&appid=%@&units=metric"
@@ -42,6 +56,7 @@ struct WeatherManager {
             switch response.result {
             case .success(let weatherData):
                 let weatherModel = weatherData.model
+                self.cacheCity(cityName: weatherModel.countryName)
                 completion(.success(weatherModel))
             case .failure(let error):
                 if error.responseCode == 404 {

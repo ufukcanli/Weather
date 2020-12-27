@@ -1,5 +1,5 @@
 //
-//  AddCityViewController.swift
+//  SearchCityViewController.swift
 //  Weather
 //
 //  Created by Ufuk Canlı on 25.12.2020.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddCityViewController: UIViewController {
+class SearchCityViewController: UIViewController {
     
     @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var searchButton: UIButton!
@@ -87,14 +87,14 @@ class AddCityViewController: UIViewController {
 
 }
 
-extension AddCityViewController: UIGestureRecognizerDelegate {
+extension SearchCityViewController: UIGestureRecognizerDelegate {
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         return touch.view == self.view
     }
 }
 
-extension AddCityViewController: UITextFieldDelegate {
+extension SearchCityViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         statusLabel.isHidden = true

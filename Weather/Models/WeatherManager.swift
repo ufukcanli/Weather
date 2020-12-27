@@ -36,7 +36,9 @@ struct WeatherManager {
         let searchterm = city.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? city
         let urlString = String(format: endpoint, searchterm, Constants.API_KEY)
         
-        AF.request(urlString).responseDecodable(of: WeatherData.self, queue: .main, decoder: JSONDecoder()) { response in
+        AF.request(urlString)
+            .validate()
+            .responseDecodable(of: WeatherData.self, queue: .main, decoder: JSONDecoder()) { response in
             switch response.result {
             case .success(let weatherData):
                 let weatherModel = weatherData.model

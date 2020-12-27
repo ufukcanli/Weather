@@ -41,6 +41,7 @@ class SearchCityViewController: UIViewController {
     }
 
     private func handleSearch(query: String) {
+        view.endEditing(true)
         activityIndicator.startAnimating()
         weatherManager.fetchWeather(byCity: query) { [weak self] result in
             guard let self = self else { return }
@@ -62,8 +63,6 @@ class SearchCityViewController: UIViewController {
             guard let self = self else { return }
             self.delegate?.didUpdateWeatherFromSearch(withModel: weatherModel)
         }
-        view.endEditing(true)
-        cityTextField.resignFirstResponder()
     }
     
     private func handleSearchError(text: String) {

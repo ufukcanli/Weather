@@ -27,22 +27,6 @@ class WeatherViewController: UIViewController {
         return manager
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        showAnimation()
-        
-        weatherManager.fetchWeather(byCity: weatherManager.getCachedCity() ?? "Istanbul") { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let weatherModel):
-                self.updateView(withModel: weatherModel)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showAddCity" {
             if let destination = segue.destination as? SearchCityViewController {

@@ -112,15 +112,33 @@ extension WeatherViewController: CLLocationManagerDelegate {
         switch manager.authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
             locationManager.requestLocation()
-        case .denied, .notDetermined, .restricted:
+        case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
-        @unknown default:
+            locationManager.requestLocation()
+        case .restricted, .denied:
             showAlertForLocationPermission()
+        @unknown default:
+            fatalError("Unknown error when asking for location permissions.")
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
+        if let location = locations.last {
+            manager.stopUpdatingLocation()
+            
+            let latitude = location.coordinate.latitude
+            let longitude = location.coordinate.longitude
+            
+            weatherManager.fetchWeather(lat: latitude, lon: longitude) { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(let weatherModel):
+                    self.updateView(withModel: weatherModel)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
